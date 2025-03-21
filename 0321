@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生信息管理系统</title>
+    <style>
+        /* 简单的样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>学生信息管理系统</h1>
+    <form id="studentForm">
+        <input type="text" id="name" placeholder="姓名" required>
+        <input type="text" id="age" placeholder="年龄" required>
+        <input type="text" id="class" placeholder="班级" required>
+        <button type="submit">添加学生</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>班级</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody">
+            <!-- 学生信息将动态添加到这里 -->
+        </tbody>
+    </table>
+    <script>
+        const form = document.getElementById('studentForm');
+        const tableBody = document.getElementById('studentTableBody');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const className = document.getElementById('class').value;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${age}</td>
+                <td>${className}</td>
+            `;
+            tableBody.appendChild(row);
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
